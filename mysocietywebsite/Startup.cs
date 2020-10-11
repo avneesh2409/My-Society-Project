@@ -2,9 +2,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using mysocietywebsite.Common;
+using mysocietywebsite.Model.ApplicationDbContext;
+using mysocietywebsite.Resource.interfaces;
+using mysocietywebsite.Service.services;
+using static mysocietywebsite.Resource.interfaces.IRespository;
 
 namespace mysocietywebsite
 {
@@ -20,9 +26,10 @@ namespace mysocietywebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews();
-
+            services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString(Constants.DefaultConnection)));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IAccount, Account>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -54,7 +61,7 @@ namespace mysocietywebsite
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "api/{controller}/{action = Index}/{id?}");
             });
 
             app.UseSpa(spa =>
@@ -63,8 +70,8 @@ namespace mysocietywebsite
 
                 if (env.IsDevelopment())
                 {
-                    // spa.UseReactDevelopmentServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                    //    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
                 }
             });
         }
