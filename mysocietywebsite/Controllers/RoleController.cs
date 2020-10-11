@@ -6,58 +6,64 @@ using Microsoft.AspNetCore.Mvc;
 using mysocietywebsite.Model.Entities;
 using static mysocietywebsite.Resource.interfaces.IRespository;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace mysocietywebsite.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class RoleController : ControllerBase
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Role> _roleRepository;
 
-        public AccountController(IRepository<User> userRepository)
+        public RoleController(IRepository<Role> roleRepository)
         {
-            _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
         // GET: api/<AccountController>
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_userRepository.GetAll());
+            return Ok(_roleRepository.GetAll());
         }
 
         // GET api/<AccountController>/5
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            return Ok(_userRepository.Get(id));
+            return Ok(_roleRepository.Get(id));
         }
 
         // POST api/<AccountController>
         [HttpPost]
-        public IActionResult Post(User user)
+        public IActionResult Post(Role role)
         {
-            try {
-                _userRepository.Insert(user);
-                _userRepository.Save();
+            try
+            {
+                _roleRepository.Insert(role);
+                _roleRepository.Save();
                 return Ok(true);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
                 return BadRequest();
             }
-             
+
         }
 
         // PUT api/<AccountController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id,User user)
+        public IActionResult Put(Guid id, Role role)
         {
-            if (id != null) {
-                _userRepository.Update(user);
-                _userRepository.Save();
+            if (id != null)
+            {
+                _roleRepository.Update(role);
+                _roleRepository.Save();
                 return Ok(true);
             }
-            else {
+            else
+            {
                 return BadRequest();
             }
         }
@@ -66,10 +72,11 @@ namespace mysocietywebsite.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            User user = _userRepository.Get(id);
-            if (user != null) {
-                _userRepository.Delete(user);
-                _userRepository.Save();
+            Role role = _roleRepository.Get(id);
+            if (role != null)
+            {
+                _roleRepository.Delete(role);
+                _roleRepository.Save();
             }
             return BadRequest();
         }
