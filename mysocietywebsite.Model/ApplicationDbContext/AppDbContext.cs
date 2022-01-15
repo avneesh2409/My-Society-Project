@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mysocietywebsite.Model.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace mysocietywebsite.Model.ApplicationDbContext
 {

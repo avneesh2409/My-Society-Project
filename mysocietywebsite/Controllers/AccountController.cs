@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using mysocietywebsite.Attributes;
 using mysocietywebsite.Model.Entities;
-using static mysocietywebsite.Resource.interfaces.IRespository;
+using mysocietywebsite.Service.interfaces;
+using System;
 
 namespace mysocietywebsite.Controllers
 {
@@ -12,13 +10,16 @@ namespace mysocietywebsite.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly Service.interfaces.IRespository.IRepository<User> _userRepository;
+        private readonly IAccount _account;
 
-        public AccountController(IRepository<User> userRepository)
+        public AccountController(IRespository.IRepository<User> userRepository,IAccount account)
         {
             _userRepository = userRepository;
+            _account = account;
         }
         // GET: api/<AccountController>
+        [AuthorizeAttribute]
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,6 +27,7 @@ namespace mysocietywebsite.Controllers
         }
 
         // GET api/<AccountController>/5
+        [AuthorizeAttribute]
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -33,13 +35,15 @@ namespace mysocietywebsite.Controllers
         }
 
         // POST api/<AccountController>
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Post(User user)
         {
             try {
-                _userRepository.Insert(user);
-                _userRepository.Save();
-                return Ok(true);
+                var result = (BaseEntity)_account.Login(user.Email, user.Password);
+                if (result != null) {
+                    return Ok(result);
+                }
+                return BadRequest("email or password is incorrect !!");
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -49,6 +53,7 @@ namespace mysocietywebsite.Controllers
         }
 
         // PUT api/<AccountController>/5
+        [AuthorizeAttribute]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id,User user)
         {
@@ -63,6 +68,7 @@ namespace mysocietywebsite.Controllers
         }
 
         // DELETE api/<AccountController>/5
+        [AuthorizeAttribute]
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

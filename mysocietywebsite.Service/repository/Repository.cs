@@ -4,12 +4,10 @@ using mysocietywebsite.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static mysocietywebsite.Resource.interfaces.IRespository;
 
 namespace mysocietywebsite.Service.services
 {
-    public class Repository<T> : IRepository<T> where T : BaseEntity
+    public class Repository<T> : interfaces.IRespository.IRepository<T> where T : BaseEntity
     {
             private readonly AppDbContext context;
             private DbSet<T> entities;
@@ -23,13 +21,14 @@ namespace mysocietywebsite.Service.services
             {
                 return entities.AsEnumerable();
             }
-            public void Insert(T entity)
+            public T Insert(T entity)
             {
                 if (entity == null)
                 {
                     throw new ArgumentNullException("entity");
                 }
-                entities.Add(entity);
+                var insertedentity = entities.Add(entity);
+                return insertedentity.Entity;
             }
             public void Update(T entity)
             {

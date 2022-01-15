@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using mysocietywebsite.Model.Entities;
-using static mysocietywebsite.Resource.interfaces.IRespository;
+using System;
+using mysocietywebsite.Service.interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,9 +11,9 @@ namespace mysocietywebsite.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        private readonly IRepository<Role> _roleRepository;
+        private readonly IRespository.IRepository<Role> _roleRepository;
 
-        public RoleController(IRepository<Role> roleRepository)
+        public RoleController(IRespository.IRepository<Role> roleRepository)
         {
             _roleRepository = roleRepository;
         }
