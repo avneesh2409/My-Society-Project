@@ -51,14 +51,25 @@ namespace mysocietywebsite.Model.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bfa65a33-79e5-4eb9-ad35-6a73ac0172d7"),
-                            CreatedBy = new Guid("bfa65a33-79e5-4eb9-ad35-6a73ac0172d7"),
-                            CreatedOn = new DateTime(2022, 1, 14, 14, 41, 59, 337, DateTimeKind.Utc).AddTicks(9073),
+                            Id = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(4001),
                             IsActive = true,
                             IsDeleted = false,
-                            ModifiedBy = new Guid("bfa65a33-79e5-4eb9-ad35-6a73ac0172d7"),
-                            ModifiedOn = new DateTime(2022, 1, 14, 14, 41, 59, 337, DateTimeKind.Utc).AddTicks(9616),
+                            ModifiedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(5320),
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("c90cea60-7517-414d-822e-74677528a0f7"),
+                            CreatedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6012),
+                            IsActive = true,
+                            IsDeleted = false,
+                            ModifiedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6060),
+                            Name = "User"
                         });
                 });
 
@@ -118,19 +129,19 @@ namespace mysocietywebsite.Model.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1ef664ec-904b-43c7-87ab-a1bfbd3df8de"),
+                            Id = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
                             Address = "H.No - 30 Indus Town",
                             Contact = "9109072549",
-                            CreatedBy = new Guid("1ef664ec-904b-43c7-87ab-a1bfbd3df8de"),
-                            CreatedOn = new DateTime(2022, 1, 14, 14, 41, 59, 339, DateTimeKind.Utc).AddTicks(1899),
+                            CreatedBy = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5771),
                             Email = "tarun@gmail.com",
                             Fullname = "Tarunendra",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifiedBy = new Guid("1ef664ec-904b-43c7-87ab-a1bfbd3df8de"),
-                            ModifiedOn = new DateTime(2022, 1, 14, 14, 41, 59, 339, DateTimeKind.Utc).AddTicks(1918),
-                            Password = "123456789",
-                            RoleId = new Guid("bfa65a33-79e5-4eb9-ad35-6a73ac0172d7"),
+                            ModifiedBy = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5844),
+                            Password = "BJJcVkTHd9Qkv8iCM8srzsyU50CjkRe4ckHbWkHVlAc=",
+                            RoleId = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
                             Username = "AD"
                         });
                 });

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\mysocietywebsite.Common\mysocietywebsite.Common.csproj" />
     <ProjectReference Include="..\mysocietywebsite.Resource\mysocietywebsite.Resource.csproj" />
   </ItemGroup>
 

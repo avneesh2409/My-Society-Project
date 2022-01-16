@@ -9,8 +9,8 @@ using mysocietywebsite.Model.ApplicationDbContext;
 namespace mysocietywebsite.Model.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201011113821_initial1")]
-    partial class initial1
+    [Migration("20220116102157_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,14 +53,25 @@ namespace mysocietywebsite.Model.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fa97aa9f-d2ca-438d-aec4-d98b4c2bad86"),
-                            CreatedBy = new Guid("fa97aa9f-d2ca-438d-aec4-d98b4c2bad86"),
-                            CreatedOn = new DateTime(2020, 10, 11, 11, 38, 21, 381, DateTimeKind.Utc).AddTicks(3041),
+                            Id = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(4001),
                             IsActive = true,
                             IsDeleted = false,
-                            ModifiedBy = new Guid("fa97aa9f-d2ca-438d-aec4-d98b4c2bad86"),
-                            ModifiedOn = new DateTime(2020, 10, 11, 11, 38, 21, 381, DateTimeKind.Utc).AddTicks(4008),
+                            ModifiedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(5320),
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("c90cea60-7517-414d-822e-74677528a0f7"),
+                            CreatedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6012),
+                            IsActive = true,
+                            IsDeleted = false,
+                            ModifiedBy = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6060),
+                            Name = "User"
                         });
                 });
 
@@ -120,19 +131,19 @@ namespace mysocietywebsite.Model.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("514414ba-8ff1-4f62-95b8-296952d896ad"),
+                            Id = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
                             Address = "H.No - 30 Indus Town",
                             Contact = "9109072549",
-                            CreatedBy = new Guid("514414ba-8ff1-4f62-95b8-296952d896ad"),
-                            CreatedOn = new DateTime(2020, 10, 11, 11, 38, 21, 383, DateTimeKind.Utc).AddTicks(919),
+                            CreatedBy = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
+                            CreatedOn = new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5771),
                             Email = "tarun@gmail.com",
                             Fullname = "Tarunendra",
                             IsActive = true,
                             IsDeleted = false,
-                            ModifiedBy = new Guid("514414ba-8ff1-4f62-95b8-296952d896ad"),
-                            ModifiedOn = new DateTime(2020, 10, 11, 11, 38, 21, 383, DateTimeKind.Utc).AddTicks(937),
-                            Password = "123456789",
-                            RoleId = new Guid("fa97aa9f-d2ca-438d-aec4-d98b4c2bad86"),
+                            ModifiedBy = new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"),
+                            ModifiedOn = new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5844),
+                            Password = "BJJcVkTHd9Qkv8iCM8srzsyU50CjkRe4ckHbWkHVlAc=",
+                            RoleId = new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"),
                             Username = "AD"
                         });
                 });

@@ -10,7 +10,7 @@ namespace mysocietywebsite.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly Service.interfaces.IRespository.IRepository<User> _userRepository;
+        private readonly IRespository.IRepository<User> _userRepository;
         private readonly IAccount _account;
 
         public AccountController(IRespository.IRepository<User> userRepository,IAccount account)
@@ -47,10 +47,22 @@ namespace mysocietywebsite.Controllers
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
-                return BadRequest();
+                return BadRequest("Something went wrong !!");
             }
              
         }
+
+        [HttpPost("register")]
+        public IActionResult Register(User user)
+        {
+                var result = _account.Register(user);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return BadRequest("Email already exist !!");
+        }
+
 
         // PUT api/<AccountController>/5
         [AuthorizeAttribute]
@@ -63,7 +75,7 @@ namespace mysocietywebsite.Controllers
                 return Ok(true);
             }
             else {
-                return BadRequest();
+                return BadRequest("Unable to update the user !!");
             }
         }
 
@@ -77,7 +89,7 @@ namespace mysocietywebsite.Controllers
                 _userRepository.Delete(user);
                 _userRepository.Save();
             }
-            return BadRequest();
+            return BadRequest("Unable to delete the user");
         }
     }
 }

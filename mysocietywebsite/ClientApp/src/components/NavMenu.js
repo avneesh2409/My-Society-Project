@@ -24,7 +24,7 @@ export const NavMenu = ({ isLoggedIn }) => {
                         <ul className="navbar-nav flex-grow">
                             {
                                 (isLoggedIn ? routes.registered : routes.naive).map(r => {
-                                    return <NavItem key={r.key}>
+                                    return (r.title !== 'default') && < NavItem key = { r.key } >
                                         <NavLink tag={Link} className="text-dark" to={r.path}>{r.title}</NavLink>
                                     </NavItem>
                                 })

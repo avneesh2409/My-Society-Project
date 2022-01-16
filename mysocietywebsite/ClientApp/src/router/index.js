@@ -1,6 +1,7 @@
 ﻿import Home from '../components/Home';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
+import Register from '../components/Register';
 
 export const routes = {
     naive: [
@@ -10,6 +11,20 @@ export const routes = {
             exact: true,
             path: '/login',
             component: Login
+        },
+        {
+            key: 2,
+            title: 'register',
+            exact: true,
+            path: '/register',
+            component: Register
+        },
+        {
+            key: 3,
+            title: 'default',
+            exact: false,
+            path: '/login',
+            component: null
         }
     ],
     registered: [
@@ -26,6 +41,13 @@ export const routes = {
             exact: true,
             path: '/logout',
             component: Logout
+        },
+        {
+            key: 3,
+            title: 'default',
+            exact: false,
+            path: '/home',
+            component: null
         }
     ]
 }
