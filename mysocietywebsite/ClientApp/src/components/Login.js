@@ -1,10 +1,12 @@
 ﻿import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { setToken } from '../helper/tokenAuth'
+import AlertBox, { type } from './childComponent/AlertBox'
 
 const Login = ({ setState:setLogin }) => {
     const history = useHistory()
     const [state, setState] = useState({ email: '', password: '' })
+    const [error, setError] = useState('');
     const changeHandler = (e) => {
         const { name, value } = e.target;
         setState(s => ({
@@ -26,18 +28,28 @@ const Login = ({ setState:setLogin }) => {
             .then(r => r.json())
             .then(res => {
                 if (res) {
-                    setLogin(s => ({
-                        ...s,
-                        isLoggedIn: true
-                    }))
-                    setToken(res.token)
-                    history.push('/home')
+                    if (res.token) {
+                        setLogin(s => ({
+                            ...s,
+                            isLoggedIn: true
+                        }))
+                        setToken(res)
+                        history.push('/home')
+                    }
+                    else {
+                        setLogin(s => ({
+                            ...s,
+                            isLoggedIn: false
+                        }))
+                        setError("email or password is incorrect !!")
+                    }
                 }
                 else{
                     setLogin(s => ({
                         ...s,
                         isLoggedIn: false
                     }))
+                    setError("email or password is incorrect !!")
                 }
             })
             .catch(err => {
@@ -46,6 +58,7 @@ const Login = ({ setState:setLogin }) => {
                     ...s,
                     isLoggedIn: false
                 }))
+                setError("Something went wrong !!")
             })
     }
     return (
@@ -97,6 +110,9 @@ const Login = ({ setState:setLogin }) => {
                     </div>
                 </div>
             </div>
+            {
+                error ? <AlertBox alertType={type.Error} message={error} setError={setError} /> : null
+            }
         </section>
     )
 }

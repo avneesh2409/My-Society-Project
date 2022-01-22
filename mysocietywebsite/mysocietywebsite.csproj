@@ -32,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\components\NewFolder\" />
     <Folder Include="ClientApp\src\NewFolder\" />
   </ItemGroup>
 

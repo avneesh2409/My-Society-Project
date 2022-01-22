@@ -39,7 +39,7 @@ namespace mysocietywebsite.Controllers
         public IActionResult Post(User user)
         {
             try {
-                var result = (BaseEntity)_account.Login(user.Email, user.Password);
+                var result = _account.Login(user.Email, user.Password);
                 if (result != null) {
                     return Ok(result);
                 }

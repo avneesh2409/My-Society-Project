@@ -1,19 +1,21 @@
 ﻿import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import AlertBox, { type } from './childComponent/AlertBox';
 import Dropdown from './childComponent/DropDown';
 
 
 const Register = (props) => {
     const history = useHistory()
-    const [state, setState] = useState({
+    const initialState = {
         fullname: '',
         email: '',
         username: '',
         password: '',
         address: '',
         contact: '',
-        role: ''
-    })
+        roleId: ''
+    }
+    const [state, setState] = useState(initialState)
     const changeHandler = (e) => {
         const { name, value } = e.target
         setState(s => ({
@@ -22,7 +24,7 @@ const Register = (props) => {
         }))
     }
     const [values, setValues] = useState({ values: [] })
-
+    const [error, setError] = useState('')
     useEffect(() => {
         fetch(`/api/role`)
             .then(r => r.json())
@@ -34,16 +36,49 @@ const Register = (props) => {
             .catch(err => {
                 console.log(err)
             })
+        return () => {
+            setValues(s => ({
+                ...s,
+                values:[]
+            }))
+        }
     },[])
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(state)
+        
+        fetch(`/api/account/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept':'application/json'
+            },
+            body: JSON.stringify(state)
+        })
+            .then(r => r.json())
+            .then(json => {
+                if (json) {
+             
+                    setState(s => ({
+                        ...s,
+                        ...initialState
+                    }))
+                    alert("succesfully registered");
+                    history.push('/login')
+                }
+                else {
+
+                    setError("unable to register !!");
+                }
+            })
+            .catch(err => {
+                setError("Something went wrong !!");
+            })
     }
     const dropdownHandler = (e) => {
         const { value } = e.target;
         setState(s => ({
             ...s,
-            role: value
+            roleId: value
         }))
     }
     return (
@@ -88,7 +123,7 @@ const Register = (props) => {
 
                             <div className="form-outline mb-4">
                                 <label className="form-label" htmlFor="form3Example3">Role</label>
-                                <Dropdown values={values.values} value={state.role} changeHandler={dropdownHandler} />
+                                <Dropdown values={values.values} value={state.roleId} changeHandler={dropdownHandler} />
 
                             </div>
 
@@ -121,6 +156,10 @@ const Register = (props) => {
                     Copyright © 2020. All rights reserved.
                 </div>
             </div>
+
+            {
+                error ? <AlertBox alertType={type.Error} message={error} setError={setError} /> : null
+            }
         </section>
 
     )

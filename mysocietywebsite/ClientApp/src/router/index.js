@@ -1,4 +1,6 @@
-﻿import Home from '../components/Home';
+﻿import Contact from '../components/Contact';
+import Dashboard from '../components/Dashboard';
+import Home from '../components/Home';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
 import Register from '../components/Register';
@@ -18,6 +20,20 @@ export const routes = {
             exact: true,
             path: '/register',
             component: Register
+        },
+        {
+            key: 4,
+            title: 'Dashboard',
+            exact: true,
+            path: '/dashboard',
+            component: Dashboard
+        },
+        {
+            key: 5,
+            title: 'Contact Us',
+            exact: true,
+            path: '/contact',
+            component: Contact
         },
         {
             key: 3,

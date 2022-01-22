@@ -1,9 +1,9 @@
 ﻿export const getToken = () => {
-    return localStorage.getItem('token');
+    return JSON.parse(localStorage.getItem('token'));
 }
 export const setToken = (token) => {
-    return localStorage.setItem('token', token);
+    localStorage.setItem('token', JSON.stringify(token));
 }
 export const clearStore = () => {
-    return localStorage.clear();
+    localStorage.clear();
 }
