@@ -1,5 +1,6 @@
 ﻿import Contact from '../components/Contact';
 import Dashboard from '../components/Dashboard';
+import Gallery from '../components/Gallery';
 import Home from '../components/Home';
 import Login from '../components/Login';
 import Logout from '../components/Logout';
@@ -53,13 +54,20 @@ export const routes = {
         },
         {
             key: 2,
+            title: 'gallery',
+            exact: true,
+            path: '/gallery',
+            component: Gallery
+        },
+        {
+            key: 3,
             title: 'logout',
             exact: true,
             path: '/logout',
             component: Logout
         },
         {
-            key: 3,
+            key: 4,
             title: 'default',
             exact: false,
             path: '/home',

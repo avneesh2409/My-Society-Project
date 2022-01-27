@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { Route } from 'react-router';
-import { Redirect, Switch } from 'react-router-dom';
+import { Redirect, Switch, useHistory, useLocation, useParams } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import './custom.css'
 import { getToken } from './helper/tokenAuth';
@@ -8,21 +8,26 @@ import { routes } from './router';
 
 const App = (props) => {
     const [state, setState] = useState({ isLoggedIn: false })
+    const history = useHistory()
+    const location = useLocation()
     useEffect(() => {
-        const token = getToken();
-        if (token) {
-            setState(s => ({
-                ...s,
-                isLoggedIn: true
-            }))
+        if (location.pathname) {
+            const token = getToken();
+            if (token) {
+                setState(s => ({
+                    ...s,
+                    isLoggedIn: true
+                }))
+                history.push(location.pathname)
+            }
+            else {
+                setState(s => ({
+                    ...s,
+                    isLoggedIn: false
+                }))
+            }
         }
-        else {
-            setState(s => ({
-                ...s,
-                isLoggedIn: false
-            }))
-        }
-    },[])
+    }, [location.pathname])
     return (
         <Layout isLoggedIn={state.isLoggedIn}>
             <React.Fragment>

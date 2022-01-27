@@ -23,7 +23,7 @@ export const NavMenu = ({ isLoggedIn }) => {
             }))
         }
 
-    })
+    },[])
     return (
         <header>
             <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>

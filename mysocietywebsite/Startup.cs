@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -5,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using mysocietywebsite.Automapper;
 using mysocietywebsite.Common;
 using mysocietywebsite.Model.ApplicationDbContext;
+using mysocietywebsite.Service.Gallery;
 using mysocietywebsite.Service.Helper;
 using mysocietywebsite.Service.interfaces;
 using mysocietywebsite.Service.jwtauth;
@@ -28,12 +31,13 @@ namespace mysocietywebsite
         {
             services.AddCors();
             services.Configure<AppSettings>(Configuration.GetSection(Constants.SECRET_KEY));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddDbContext<AppDbContext>(options => options.UseMySql(Configuration.GetConnectionString(Constants.DefaultConnection)));
             services.AddScoped(typeof(IRespository.IRepository<>), typeof(Repository<>));
             services.AddScoped<IAccount, Account>();
+            services.AddScoped<IGalleryService, GalleryService>();
             services.AddSingleton<IJwtAuth,Auth>();
-
+            services.AddAutoMapper(typeof(ObjectMapper));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

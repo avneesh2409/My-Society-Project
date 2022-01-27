@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\mysocietywebsite.Common\mysocietywebsite.Common.csproj" />
+    <ProjectReference Include="..\mysocietywebsite.Model\mysocietywebsite.Model.csproj" />
     <ProjectReference Include="..\mysocietywebsite.Resource\mysocietywebsite.Resource.csproj" />
   </ItemGroup>
 

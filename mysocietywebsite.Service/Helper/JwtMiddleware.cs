@@ -56,7 +56,7 @@ namespace mysocietywebsite.Service.Helper
                 // attach user to context on successful jwt validation
                 context.Items["User"] = _userService.Get(userId);
             }
-            catch
+            catch(Exception ex)
             {
                 // do nothing if jwt validation fails
                 // user is not attached to context so request won't have access to secure routes

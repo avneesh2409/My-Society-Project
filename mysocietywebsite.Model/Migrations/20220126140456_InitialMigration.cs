@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace mysocietywebsite.Model.Migrations
 {
-    public partial class initialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,20 +55,50 @@ namespace mysocietywebsite.Model.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Roles",
-                columns: new[] { "Id", "CreatedBy", "CreatedOn", "IsActive", "IsDeleted", "ModifiedBy", "ModifiedOn", "Name" },
-                values: new object[] { new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(4001), true, false, new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(5320), "Admin" });
+            migrationBuilder.CreateTable(
+                name: "Gallery",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<Guid>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gallery", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Gallery_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "Roles",
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "IsActive", "IsDeleted", "ModifiedBy", "ModifiedOn", "Name" },
-                values: new object[] { new Guid("c90cea60-7517-414d-822e-74677528a0f7"), new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6012), true, false, new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), new DateTime(2022, 1, 16, 10, 21, 55, 3, DateTimeKind.Utc).AddTicks(6060), "User" });
+                values: new object[] { new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), new DateTime(2022, 1, 26, 14, 4, 55, 767, DateTimeKind.Utc).AddTicks(9690), true, false, new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), new DateTime(2022, 1, 26, 14, 4, 55, 768, DateTimeKind.Utc).AddTicks(222), "Admin" });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "CreatedBy", "CreatedOn", "IsActive", "IsDeleted", "ModifiedBy", "ModifiedOn", "Name" },
+                values: new object[] { new Guid("4c034a10-98b9-4f8f-ae0d-e7da889b888c"), new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), new DateTime(2022, 1, 26, 14, 4, 55, 768, DateTimeKind.Utc).AddTicks(538), true, false, new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), new DateTime(2022, 1, 26, 14, 4, 55, 768, DateTimeKind.Utc).AddTicks(563), "User" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "Contact", "CreatedBy", "CreatedOn", "Email", "Fullname", "IsActive", "IsDeleted", "ModifiedBy", "ModifiedOn", "Password", "RoleId", "Username" },
-                values: new object[] { new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"), "H.No - 30 Indus Town", "9109072549", new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"), new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5771), "tarun@gmail.com", "Tarunendra", true, false, new Guid("0c6b13e0-0f19-45ae-8fac-f6f3293284ef"), new DateTime(2022, 1, 16, 10, 21, 56, 963, DateTimeKind.Utc).AddTicks(5844), "BJJcVkTHd9Qkv8iCM8srzsyU50CjkRe4ckHbWkHVlAc=", new Guid("92235171-06b3-40e6-adaf-2499bbe3b4f0"), "AD" });
+                values: new object[] { new Guid("d98e6c37-3bc4-4874-b71e-e500a44ab56e"), "H.No - 30 Indus Town", "9109072549", new Guid("d98e6c37-3bc4-4874-b71e-e500a44ab56e"), new DateTime(2022, 1, 26, 14, 4, 55, 785, DateTimeKind.Utc).AddTicks(459), "tarun@gmail.com", "Tarunendra", true, false, new Guid("d98e6c37-3bc4-4874-b71e-e500a44ab56e"), new DateTime(2022, 1, 26, 14, 4, 55, 785, DateTimeKind.Utc).AddTicks(526), "BJJcVkTHd9Qkv8iCM8srzsyU50CjkRe4ckHbWkHVlAc=", new Guid("372e9e7e-1181-464e-8721-57aae55723d6"), "AD" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gallery_UserId",
+                table: "Gallery",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -78,6 +108,9 @@ namespace mysocietywebsite.Model.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Gallery");
+
             migrationBuilder.DropTable(
                 name: "Users");
 

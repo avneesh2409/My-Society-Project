@@ -8,4 +8,8 @@
     <ProjectReference Include="..\mysocietywebsite.Model\mysocietywebsite.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.13" />
+  </ItemGroup>
+
 </Project>
